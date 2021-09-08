@@ -2,3 +2,4 @@
 node_modules
 API Findings.txt
 package-lock.json
+/package-lock.json
