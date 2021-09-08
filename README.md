@@ -1,7 +1,7 @@
 # BiliBiliComics NodeJS API
 
-The BiliBiliComics NodeJS API is meant to ease the use of getting information from bilibilicomics.com.
-Every Function is able to be used as an async function.
+The BiliBiliComics NodeJS API is meant to ease the use of getting information from bilibilicomics.com \
+Every Function is an asynchronous function.
 
 ## Features
 
