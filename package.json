@@ -1,10 +1,21 @@
 {
   "name": "bilibilicomics-api",
   "version": "1.0.0",
-  "description": "An API for bilibilicomics.com",
+  "description": "An NodeJS API for bilibilicomics.com",
+  "keywords": [
+    "bilibili",
+    "bilibilicomics",
+    "comics",
+    "manhua"
+  ],
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mar0xy/bilibilicomics-api"
   },
   "author": "Maroxy",
   "license": "ISC",
