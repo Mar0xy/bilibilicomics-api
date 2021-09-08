@@ -28,7 +28,7 @@ View the [test folder](https://github.com/Mar0xy/bilibilicomics-api/tree/main/te
 ## Functions
 
 ##### bilibilicomics.getDetails(int/number)
-Returns most details about the comic: cover, title, desc, chapters (all chapters in an array, NOTE: Chapters get sorted from latest to oldest), total (total chapters)
+Returns most details about the comic: cover, title, url, desc, chapters (all chapters in an array, NOTE: Chapters get sorted from latest to oldest), total (total chapters)
 
 ##### bilibilicomics.Search(string)
 Returns all results with the provided string the results return in an array with following data: id, title, url, authors, vcover, hcover, genres
