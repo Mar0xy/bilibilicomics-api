@@ -23,7 +23,7 @@ const bilibilicomics = require("bilibilicomics-api");
 ```
 
 ## Examples
-View the test folder for examples
+View the [test folder](https://github.com/Mar0xy/bilibilicomics-api/tree/main/test) for examples
 
 ## Functions
 
