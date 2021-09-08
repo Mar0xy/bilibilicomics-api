@@ -1,0 +1,14 @@
+{
+  "name": "bilibilicomics-api",
+  "version": "1.0.0",
+  "description": "An API for bilibilicomics.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maroxy",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4"
+  }
+}
