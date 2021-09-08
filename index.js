@@ -10,7 +10,8 @@ class bilibilicomics {
                     let epcount = res.data.data.total
                     let cover = res.data.data.horizontal_cover
                     let desc = res.data.data.evaluate
-                    return resolve({cover: cover, title: title, desc: desc, chapters: episodes, total: epcount});
+                    let url = `https://www.bilibilicomics.com/detail/mc${res.data.data.id}`;
+                    return resolve({cover: cover, title: title, url: url, desc: desc, chapters: episodes, total: epcount});
                 })
                 .catch(err => { return reject(`An error occured within the api: ${err}`) })
         })
@@ -58,6 +59,7 @@ class bilibilicomics {
                         results.push({
                             id: comic.id,
                             title: comic.title.replace(/(<([^>]+)>)/gi, ""),
+                            url: `https://www.bilibilicomics.com/detail/mc${comic.id}`,
                             authors: comic.author_name,
                             vcover: comic.vertical_cover,
                             hcover: comic.horizontal_cover,

@@ -31,7 +31,7 @@ View the [test folder](https://github.com/Mar0xy/bilibilicomics-api/tree/main/te
 Returns most details about the comic: cover, title, desc, chapters (all chapters in an array, NOTE: Chapters get sorted from latest to oldest), total (total chapters)
 
 ##### bilibilicomics.Search(string)
-Returns all results with the provided string the results return in an array with following data: id, title, authors, vcover, hcover, genres
+Returns all results with the provided string the results return in an array with following data: id, title, url, authors, vcover, hcover, genres
 
 ##### bilibilicomics.fetchImages(int/number)
 Returns every image path for the chapter in an array for getTokens.
