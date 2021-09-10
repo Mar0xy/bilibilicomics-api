@@ -142,7 +142,7 @@ class bilibilicomics {
                         })
                         setTimeout(() => {return resolve(results)}, 1500);
                     })
-                    .catch(err => { console.log(err.response.data); return reject(`An error occured within the api: ${err}`) })
+                    .catch(err => { return reject(`An error occured within the api: ${err}`) })
             })
         } else {
             return new Promise((resolve, reject) => {
