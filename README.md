@@ -55,4 +55,4 @@ Returns 6 random comics like on the homepage: id, title, url, vcover, hcover, au
 Returns multiple comics as an array by the provided array filled with comic ids: id, title, url, vcover, hcover
 
 ##### bilibilicomics.getFavorites()
-Returns every favorite comic from your account (NOTE: This is still very experimental and not yet officially released)
+Returns every favorite comic from your account (NOTE: This is still very experimental)
