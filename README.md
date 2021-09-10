@@ -24,7 +24,7 @@ const bilibilicomics-api = require("bilibilicomics-api");
 
 Create Constructor you can provide three strings: First one is the Authorization Token without Bearer, Second is location either us for EU/US or sg for Asia/Singapore \
 \
-Third is refreshtoken which can be accessed via viewing any post requests cookies with the sg-user/us-user.bilibilicomics.com domain via Dev Tools on browser it's labelled as accesstoken in the Cookie \
+Third is refreshtoken which can be accessed via viewing any post requests cookies with the sg-user/us-user.bilibilicomics.com domain via Dev Tools on browser it's labelled as accesstoken in the Cookie Header \
 \
 These strings are all required if you end up using account based functions like getFavorites
 ```js
