@@ -1,6 +1,12 @@
 const axios = require("axios");
 
 class bilibilicomics {
+
+    constructor(auth, area) {
+        this.auth = `Bearer ${auth}`;
+        this.area = area;
+    }
+
     getDetails(id) {
         return new Promise((resolve, reject) => {
             axios.post('https://www.bilibilicomics.com/twirp/comic.v1.Comic/ComicDetail?device=android&platform=app', {'comic_id': id})
@@ -111,6 +117,28 @@ class bilibilicomics {
                 .catch(err => { return reject(`An error occured within the api: ${err}`) })
         })
     }
+    getFavorites() {
+        if (this.auth && this.area) {
+            return new Promise((resolve, reject) => {
+                axios.post(`https://${this.area === 'us' ? 'us-user' : this.area === 'sg' ? 'sg-user' : 'www'}.bilibilicomics.com/twirp/bookshelf.v1.Bookshelf/ListFavorite?device=android&platform=app`, {"page_num":1,"page_size":50,"order":1}, {headers: {'Authorization': this.auth}})
+                    .then(res => {
+                        let results = [];
+                        res.data.data.list.forEach(favorite => {
+                            results.push({
+                                id: favorite.comic_id,
+                                last_chapter_id: favorite.last_ep_id
+                            })
+                        })
+                        return resolve(results);
+                    })
+                    .catch(err => { return reject(`An error occured within the api: ${err}`) })
+            })
+        } else {
+            return new Promise((resolve, reject) => {
+                return resolve(`BiliBiliComics-API does not have an auth token and area assigned.`)
+            })
+        }
+    }
 }
 
-module.exports = new bilibilicomics();
+module.exports = bilibilicomics;
