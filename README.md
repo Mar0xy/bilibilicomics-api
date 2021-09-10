@@ -19,7 +19,14 @@ npm install bilibilicomics-api
 
 Require the module
 ```js
-const bilibilicomics = require("bilibilicomics-api");
+const bilibilicomics-api = require("bilibilicomics-api");
+```
+
+Create Constructor you can provide three strings: First one is the Authorization Token without Bearer, Second is location either us for EU/US or sg for Asia/Singapore \
+and third is refreshtoken which can be accessed via viewing any post requests cookies with the sg-user/us-user.bilibilicomics.com domain via Dev Tools on browser it's labelled as accesstoken in the Cookie \
+These strings are all required if you end up using account based functions like getFavorites
+```js
+const bilibilicomics = new bilibilicomics-api();
 ```
 
 ## Examples
@@ -38,3 +45,12 @@ Returns every image path for the chapter in an array for getTokens.
 
 ##### bilibilicomics.getTokens(response from fetchImages)
 Returns every image from fetchImages as completed URLS with Access Tokens attached to them in an array.
+
+##### bilibilicomics.getFeatured()
+Returns 6 random comics like on the homepage: id, title, url, vcover, hcover, authors, genres
+
+##### bilibilicomics.getComicsByID(array)
+Returns multiple comics as an array by the provided array filled with comic ids: id, title, url, vcover, hcover
+
+##### bilibilicomics.getFavorites()
+Returns every favorite comic from your account (NOTE: This is still very experimental and not yet officially released)
