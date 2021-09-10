@@ -71,6 +71,46 @@ class bilibilicomics {
                 .catch(err => { return reject(`An error occured within the api: ${err}`) })
         })
     }
+    getComicsByID(ids) {
+        return new Promise((resolve, reject) => {
+            axios.post('https://www.bilibilicomics.com/twirp/comic.v1.Comic/GetComicsByIDs?device=android&platform=app', {"ids": ids})
+                .then(res => {
+                    let results = [];
+                    res.data.data.comics.forEach(comics => {
+                        results.push({
+                            id: comics.id,
+                            title: comics.title.replace(/(<([^>]+)>)/gi, ""),
+                            url: `https://www.bilibilicomics.com/detail/mc${comics.id}`,
+                            vcover: comics.vertical_cover,
+                            hcover: comics.horizontal_cover
+                        })
+                    })
+                    return resolve(results);
+                })
+                .catch(err => { return reject(`An error occured within the api: ${err}`) })
+        })
+    }
+    getFeatured() {
+        return new Promise((resolve, reject) => {
+            axios.post('https://www.bilibilicomics.com/twirp/comic.v1.Comic/GetClassPageSixComics?device=android&platform=app', {"id":3,"isAll":0,"page_num":2,"page_size":6,"style_prefer":"[{\"style_id\":3,\"prefer\":2},{\"style_id\":11,\"prefer\":1},{\"style_id\":12,\"prefer\":2},{\"style_id\":13,\"prefer\":2},{\"style_id\":14,\"prefer\":1},{\"style_id\":15,\"prefer\":2},{\"style_id\":16,\"prefer\":1},{\"style_id\":17,\"prefer\":2},{\"style_id\":19,\"prefer\":2},{\"style_id\":20,\"prefer\":2},{\"style_id\":21,\"prefer\":1},{\"style_id\":22,\"prefer\":2},{\"style_id\":23,\"prefer\":1},{\"style_id\":30,\"prefer\":2},{\"style_id\":41,\"prefer\":2}]"})
+                .then(res => {
+                    let results = [];
+                    res.data.data.roll_six_comics.forEach(comics => {
+                        results.push({
+                            id: comics.id,
+                            title: comics.title.replace(/(<([^>]+)>)/gi, ""),
+                            url: `https://www.bilibilicomics.com/detail/mc${comics.id}`,
+                            vcover: comics.vertical_cover,
+                            hcover: comics.horizontal_cover,
+                            authors: comics.author_name,
+                            genres: comics.style
+                        })
+                    })
+                    return resolve(results);
+                })
+                .catch(err => { return reject(`An error occured within the api: ${err}`) })
+        })
+    }
 }
 
 module.exports = new bilibilicomics();
