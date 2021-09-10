@@ -2,9 +2,15 @@ const axios = require("axios");
 
 class bilibilicomics {
 
-    constructor(auth, area) {
+    constructor(auth, area, refreshtoken) {
         this.auth = `Bearer ${auth}`;
         this.area = area;
+        this.refreshtoken = refreshtoken;
+        setInterval(() => {
+            if (this.auth && this.area && this.refreshToken) {
+                this.refreshToken();
+            }
+        }, 60000);
     }
 
     getDetails(id) {
@@ -124,18 +130,39 @@ class bilibilicomics {
                     .then(res => {
                         let results = [];
                         res.data.data.list.forEach(favorite => {
-                            results.push({
-                                id: favorite.comic_id,
-                                last_chapter_id: favorite.last_ep_id
+                            this.getDetails(favorite.comic_id).then(comic => {
+                                results.push({
+                                    id: favorite.comic_id,
+                                    title: comic.title.replace(/(<([^>]+)>)/gi, ""),
+                                    comic_url: `https://www.bilibilicomics.com/detail/mc${favorite.comic_id}`,
+                                    last_chapter_id: favorite.last_ep_id,
+                                    last_chapter: `https://www.bilibilicomics.com/mc${favorite.comic_id}/${favorite.last_ep_id}`
+                                })
                             })
                         })
-                        return resolve(results);
+                        setTimeout(() => {return resolve(results)}, 1500);
+                    })
+                    .catch(err => { console.log(err.response.data); return reject(`An error occured within the api: ${err}`) })
+            })
+        } else {
+            return new Promise((resolve, reject) => {
+                return resolve(`BiliBiliComics-API does not have an auth token and/or area assigned.`)
+            })
+        }
+    }
+    refreshToken() {
+        if (this.auth && this.area) {
+            return new Promise((resolve, reject) => {
+                axios.post(`https://${this.area === 'us' ? 'us-user' : this.area === 'sg' ? 'sg-user' : 'www'}.bilibilicomics.com/twirp/global.v1.User/RefreshToken?device=android&platform=app`, {"refresh_token": this.refreshtoken}, {headers: {'Authorization': this.auth}})
+                    .then(res => {
+                        this.auth = res.data.data.access_token;
+                        return resolve();
                     })
                     .catch(err => { return reject(`An error occured within the api: ${err}`) })
             })
         } else {
             return new Promise((resolve, reject) => {
-                return resolve(`BiliBiliComics-API does not have an auth token and area assigned.`)
+                return resolve(`BiliBiliComics-API does not have an auth token and/or area assigned.`)
             })
         }
     }
