@@ -18,6 +18,16 @@
     "url": "https://github.com/Mar0xy/bilibilicomics-api"
   },
   "author": "Maroxy",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://ko-fi.com/maroxy"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/Mar0xy"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.4"
