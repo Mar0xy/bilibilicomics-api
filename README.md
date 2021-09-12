@@ -1,6 +1,6 @@
 # BiliBiliComics NodeJS API
 
-![npm](https://img.shields.io/npm/dm/bilibilicomics-api?logo=npm&style=for-the-badge) \
+![npm](https://img.shields.io/npm/dm/bilibilicomics-api?logo=npm&style=for-the-badge)
 
 The BiliBiliComics NodeJS API is meant to ease the use of getting information from bilibilicomics.com \
 Every Function is an asynchronous function.
